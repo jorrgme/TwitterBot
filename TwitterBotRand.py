@@ -2,6 +2,7 @@ import requests, json, time,sys
 from requests_oauthlib import OAuth1
 from datetime import datetime
 from random import randint
+import numpy
 
 query = 'https://api.twitter.com/1.1/search/tweets.json?q=giveaway%20RT%20since%3A2017-09-10%20-filter%3Areplies&count=100'
 queryes = 'https://api.twitter.com/1.1/search/tweets.json?q=sorteo%20RT%20since%3A2017-09-10%20-filter%3Areplies&count=100'
@@ -27,7 +28,7 @@ retweeted = fileretweeted.read().split()
 
 while True:
 
-    inp = str(randint(1,2))
+    inp = str(numpy.random.choice(numpy.arange(1, 3),p=[0.9,0.1]))
     print(inp)
 
     if inp == "1":
