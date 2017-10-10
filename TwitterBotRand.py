@@ -79,7 +79,7 @@ while True:
                     us = followed.pop(0)
                     s = requests.post(unfollow+us,auth=auth)
                     print (s)
-                    time.sleep(3)
+                    time.sleep(10)
                     print ("Unfollowed user: "+us)
             for u in usuarios:
                 if u not in followed:
