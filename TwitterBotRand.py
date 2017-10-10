@@ -113,4 +113,4 @@ while True:
             print ("Tweet already retweeted")
         n+=1
     print("Last exec: "+str(datetime.now()))
-    time.sleep(7200)
+    time.sleep(10800)
