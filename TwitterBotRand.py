@@ -79,7 +79,7 @@ while True:
                     us = followed.pop(0)
                     s = requests.post(unfollow+us,auth=auth)
                     print (s)
-                    time.sleep(0.5)
+                    time.sleep(3)
                     print ("Unfollowed user: "+us)
             for u in usuarios:
                 if u not in followed:
@@ -88,7 +88,7 @@ while True:
                     followed.append(u)
                     print ("Following user: "+u)
 
-                    time.sleep(0.5)
+                    time.sleep(1)
                 else:
                     print ("User: "+ u+" already followed")
 
@@ -100,7 +100,7 @@ while True:
             x = requests.post(ur,auth=auth)
             print (x)
             y = requests.post(li,auth=auth)
-            time.sleep(0.5)
+            time.sleep(1)
 
 
             fileretweetedw.write(idtweet+"\n")
@@ -112,4 +112,4 @@ while True:
             print ("Tweet already retweeted")
         n+=1
     print("Last exec: "+str(datetime.now()))
-    time.sleep(1200)
+    time.sleep(1500)
