@@ -32,10 +32,10 @@ while True:
 
     if inp == "1":
         r = requests.get(query, auth=auth)
-        print "Bot launched in ENGLISH"
+        print ("Bot launched in ENGLISH")
     if inp == "2":
         r = requests.get(queryes, auth=auth)
-        print "Bot launched in SPANISH"
+        print ("Bot launched in SPANISH")
 
     r = json.loads(r.text)
 
@@ -44,9 +44,9 @@ while True:
     n = 1
 
     for current in tweets:
-        print "------------------------------------------"
-        print "Working on tweet number: "+ str(n)
-        print "------------------------------------------"
+        print ("------------------------------------------")
+        print ("Working on tweet number: "+ str(n))
+        print ("------------------------------------------")
         idtweet = current['id_str']
         idtweet = str(idtweet)
 
@@ -80,17 +80,17 @@ while True:
                     s = requests.post(unfollow+us,auth=auth)
                     print (s)
                     time.sleep(0.5)
-                    print "Unfollowed user: "+us
+                    print ("Unfollowed user: "+us)
             for u in usuarios:
                 if u not in followed:
                     requests.post(follow+u,auth=auth)
                     filefollowedw.write(u+"\n")
                     followed.append(u)
-                    print "Following user: "+u
+                    print ("Following user: "+u)
 
                     time.sleep(0.5)
                 else:
-                    print "User: "+ u+" already followed"
+                    print ("User: "+ u+" already followed")
 
             ur = ""
             li=""
@@ -98,18 +98,18 @@ while True:
             li = like+idtweet
 
             x = requests.post(ur,auth=auth)
-            print x
+            print (x)
             y = requests.post(li,auth=auth)
             time.sleep(0.5)
 
 
             fileretweetedw.write(idtweet+"\n")
             retweeted.append(idtweet)
-            print "Tweet: "+idtweet+" retweeted"
+            print ("Tweet: "+idtweet+" retweeted")
 
 
         else:
-            print "Tweet already retweeted"
+            print ("Tweet already retweeted")
         n+=1
     print("Last exec: "+str(datetime.now()))
     time.sleep(1200)
