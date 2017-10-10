@@ -25,88 +25,91 @@ followed = filefollowed.read().split()
 fileretweeted = open("tweetsRT.txt","r")
 retweeted = fileretweeted.read().split()
 
-inp = str(randint(1,2))
-print(inp)
+while True:
 
-if inp == "1":
-    r = requests.get(query, auth=auth)
-    print "Bot launched in ENGLISH"
-if inp == "2":
-    r = requests.get(queryes, auth=auth)
-    print "Bot launched in SPANISH"
+    inp = str(randint(1,2))
+    print(inp)
 
-r = json.loads(r.text)
+    if inp == "1":
+        r = requests.get(query, auth=auth)
+        print "Bot launched in ENGLISH"
+    if inp == "2":
+        r = requests.get(queryes, auth=auth)
+        print "Bot launched in SPANISH"
 
-#Tweets resultado de la busqueda
-tweets = r["statuses"]
-n = 1
+    r = json.loads(r.text)
 
-for current in tweets:
-    print "------------------------------------------"
-    print "Working on tweet number: "+ str(n)
-    print "------------------------------------------"
-    idtweet = current['id_str']
-    idtweet = str(idtweet)
+    #Tweets resultado de la busqueda
+    tweets = r["statuses"]
+    n = 1
 
-    if idtweet not in retweeted:
+    for current in tweets:
+        print "------------------------------------------"
+        print "Working on tweet number: "+ str(n)
+        print "------------------------------------------"
+        idtweet = current['id_str']
+        idtweet = str(idtweet)
 
-        #Perfil del poster
-        poster = current["user"]["id_str"]
-        nombre = current["user"]["screen_name"]
-        usuarios = []
-        usuarios.append(str(poster))
-        nombres = []
-        nombres.append(str(nombre))
+        if idtweet not in retweeted:
 
-        #Perfiles mencionados en el tweet
-        menciones = current["entities"]["user_mentions"]
+            #Perfil del poster
+            poster = current["user"]["id_str"]
+            nombre = current["user"]["screen_name"]
+            usuarios = []
+            usuarios.append(str(poster))
+            nombres = []
+            nombres.append(str(nombre))
 
-        for x in menciones:
-            usuar = x["screen_name"]
-            nombres.append(str(usuar))
-        for perfil in menciones:
-            user = perfil['id_str']
-            usuarios.append(str(user))
-        alr = 0
-        for u in usuarios:
-            if u in followed:
-                alr+=1
+            #Perfiles mencionados en el tweet
+            menciones = current["entities"]["user_mentions"]
 
-        if len(followed)>=5000:
-            for i in range(0,alr):
-                us = followed.pop(0)
-                s = requests.post(unfollow+us,auth=auth)
-                print (s)
-                time.sleep(0.5)
-                print "Unfollowed user: "+us
-        for u in usuarios:
-            if u not in followed:
-                requests.post(follow+u,auth=auth)
-                filefollowedw.write(u+"\n")
-                followed.append(u)
-                print "Following user: "+u
+            for x in menciones:
+                usuar = x["screen_name"]
+                nombres.append(str(usuar))
+            for perfil in menciones:
+                user = perfil['id_str']
+                usuarios.append(str(user))
+            alr = 0
+            for u in usuarios:
+                if u in followed:
+                    alr+=1
 
-                time.sleep(0.5)
-            else:
-                print "User: "+ u+" already followed"
+            if len(followed)>=5000:
+                for i in range(0,alr):
+                    us = followed.pop(0)
+                    s = requests.post(unfollow+us,auth=auth)
+                    print (s)
+                    time.sleep(0.5)
+                    print "Unfollowed user: "+us
+            for u in usuarios:
+                if u not in followed:
+                    requests.post(follow+u,auth=auth)
+                    filefollowedw.write(u+"\n")
+                    followed.append(u)
+                    print "Following user: "+u
 
-        ur = ""
-        li=""
-        ur = retweet+idtweet+'.json'
-        li = like+idtweet
+                    time.sleep(0.5)
+                else:
+                    print "User: "+ u+" already followed"
 
-        x = requests.post(ur,auth=auth)
-        print x
-        y = requests.post(li,auth=auth)
-        time.sleep(0.5)
+            ur = ""
+            li=""
+            ur = retweet+idtweet+'.json'
+            li = like+idtweet
 
-
-        fileretweetedw.write(idtweet+"\n")
-        retweeted.append(idtweet)
-        print "Tweet: "+idtweet+" retweeted"
+            x = requests.post(ur,auth=auth)
+            print x
+            y = requests.post(li,auth=auth)
+            time.sleep(0.5)
 
 
-    else:
-        print "Tweet already retweeted"
-    n+=1
-print("Last exec: "+str(datetime.now()))
+            fileretweetedw.write(idtweet+"\n")
+            retweeted.append(idtweet)
+            print "Tweet: "+idtweet+" retweeted"
+
+
+        else:
+            print "Tweet already retweeted"
+        n+=1
+    print("Last exec: "+str(datetime.now()))
+    time.sleep(1200)
