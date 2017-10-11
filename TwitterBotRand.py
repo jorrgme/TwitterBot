@@ -28,7 +28,7 @@ retweeted = fileretweeted.read().split()
 
 while True:
 
-    inp = str(numpy.random.choice(numpy.arange(1, 3),p=[0.9,0.1]))
+    inp = str(numpy.random.choice(numpy.arange(1, 3),p=[0.7,0.3]))
     print(inp)
 
     if inp == "1":
