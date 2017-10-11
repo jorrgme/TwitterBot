@@ -14,8 +14,8 @@ like = 'https://api.twitter.com/1.1/favorites/create.json?id='
 comment = 'https://api.twitter.com/1.1/statuses/update.json?in_reply_to_status_id='
 
 #Authentication of the app
-auth = OAuth1('AFiDnxnk1bPJW6VnFwVnUXf5Y', 'ovSSXzK4O9jgXqQhjBhF8n6akTS27yRtLG0M5jLtujUycExbdw',
-'915134081117167616-T0C8yBYRaYQxNgh2YPLV5ciTObShpdR', 'F7BY5UnbW0Q8PXRUBExxtrsMEVnfbRWxXYIO5ZbAqsLhw')
+auth = OAuth1('6IvCsBg3LQxsKw3NO9VaWNGvx', 'smUWndlVJqIXkEoXlhKIIA8kHwg3ZhHbOEzykRHRcFW7Z8vtsk',
+'918095472212004865-nmU13L3jdFv5CnoQ6Fei08VITEtnwCy', 'FVjJg3Eb1Qt9TYvFN2Q3Yy4bJVm0p4qzcOkGRSJBfCBZx')
 
 filefollowedw = open("usrsfollowed.txt","a")
 fileretweetedw = open("tweetsRT.txt","a")
@@ -80,7 +80,7 @@ while True:
                     us = followed.pop(0)
                     s = requests.post(unfollow+us,auth=auth)
                     print (s)
-                    time.sleep(10)
+                    time.sleep(15)
                     print ("Unfollowed user: "+us)
             for u in usuarios:
                 if u not in followed:
