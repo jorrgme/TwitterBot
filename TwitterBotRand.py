@@ -79,7 +79,8 @@ while True:
                 usuarios.append(str(user))
             alr = 0
             for u in usuarios:
-                alr+=1
+                if u not in friends:
+                    alr+=1
 
             if len(friends)>=4975:
                 for i in range(0,alr):
@@ -87,7 +88,7 @@ while True:
                     us = friends.pop(0)
                     s = requests.post(unfollow+str(us),auth=auth)
                     print (s)
-                    time.sleep(15)
+                    time.sleep(120)
                     print ("Unfollowed user: "+str(us))
             for u in usuarios:
                 #if u not in followed:
@@ -98,7 +99,7 @@ while True:
                     friends.append(u)
                     print ("Following user: "+u)
 
-                    time.sleep(1)
+                    time.sleep(2)
                 else:
                     print ("User: "+ u+" already followed")
 
@@ -110,7 +111,7 @@ while True:
             x = requests.post(ur,auth=auth)
             print (x)
             y = requests.post(li,auth=auth)
-            time.sleep(1)
+            time.sleep(2)
 
 
             fileretweetedw.write(idtweet+"\n")
