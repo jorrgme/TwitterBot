@@ -75,7 +75,7 @@ while True:
                 if u in followed:
                     alr+=1
 
-            if len(followed)>=5000:
+            if len(followed)>=4950:
                 for i in range(0,alr):
                     us = followed.pop(0)
                     s = requests.post(unfollow+us,auth=auth)
