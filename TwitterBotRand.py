@@ -17,11 +17,18 @@ comment = 'https://api.twitter.com/1.1/statuses/update.json?in_reply_to_status_i
 auth = OAuth1('6IvCsBg3LQxsKw3NO9VaWNGvx', 'smUWndlVJqIXkEoXlhKIIA8kHwg3ZhHbOEzykRHRcFW7Z8vtsk',
 '918095472212004865-nmU13L3jdFv5CnoQ6Fei08VITEtnwCy', 'FVjJg3Eb1Qt9TYvFN2Q3Yy4bJVm0p4qzcOkGRSJBfCBZx')
 
-filefollowedw = open("usrsfollowed.txt","a")
+queryfriends = 'https://api.twitter.com/1.1/friends/ids.json'
+
+r = requests.get(queryfriends, auth=auth)
+r = json.loads(r.text)
+
+friends = r['ids']
+
+#filefollowedw = open("usrsfollowed.txt","a")
 fileretweetedw = open("tweetsRT.txt","a")
 
-filefollowed = open("usrsfollowed.txt","r")
-followed = filefollowed.read().split()
+#filefollowed = open("usrsfollowed.txt","r")
+#followed = filefollowed.read().split()
 
 fileretweeted = open("tweetsRT.txt","r")
 retweeted = fileretweeted.read().split()
@@ -72,21 +79,23 @@ while True:
                 usuarios.append(str(user))
             alr = 0
             for u in usuarios:
-                if u in followed:
-                    alr+=1
+                alr+=1
 
-            if len(followed)>=4975:
+            if len(friends)>=4975:
                 for i in range(0,alr):
-                    us = followed.pop(0)
-                    s = requests.post(unfollow+us,auth=auth)
+                    #us = followed.pop(0)
+                    us = friends.pop(0)
+                    s = requests.post(unfollow+str(us),auth=auth)
                     print (s)
                     time.sleep(15)
-                    print ("Unfollowed user: "+us)
+                    print ("Unfollowed user: "+str(us))
             for u in usuarios:
-                if u not in followed:
+                #if u not in followed:
+                if u not in friends:
                     requests.post(follow+u,auth=auth)
-                    filefollowedw.write(u+"\n")
-                    followed.append(u)
+                    #filefollowedw.write(u+"\n")
+                    #followed.append(u)
+                    friends.append(u)
                     print ("Following user: "+u)
 
                     time.sleep(1)
