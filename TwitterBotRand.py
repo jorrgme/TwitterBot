@@ -12,12 +12,12 @@ follow = 'https://api.twitter.com/1.1/friendships/create.json?user_id='
 unfollow = 'https://api.twitter.com/1.1/friendships/destroy.json?user_id='
 like = 'https://api.twitter.com/1.1/favorites/create.json?id='
 comment = 'https://api.twitter.com/1.1/statuses/update.json?in_reply_to_status_id='
+queryfriends = 'https://api.twitter.com/1.1/friends/ids.json'
 
 #Authentication of the app
-auth = OAuth1('6IvCsBg3LQxsKw3NO9VaWNGvx', 'smUWndlVJqIXkEoXlhKIIA8kHwg3ZhHbOEzykRHRcFW7Z8vtsk',
-'918095472212004865-nmU13L3jdFv5CnoQ6Fei08VITEtnwCy', 'FVjJg3Eb1Qt9TYvFN2Q3Yy4bJVm0p4qzcOkGRSJBfCBZx')
+auth = OAuth1('kYg4claOg0rjgyGJDhvvrrF14', 'jqgDkAKn3aAziYh4sUyAnXsuQTDQ9cOCJt07baLdDSBIsmrVaD',
+'918095472212004865-HeZzj5dC7tmuKjohfoZjEdIkBh65rAp', 'bAK4N9m5cuXtTy6Re3jEIyzytcRjCijIeBEZPTSHrqjh6')
 
-queryfriends = 'https://api.twitter.com/1.1/friends/ids.json'
 
 r = requests.get(queryfriends, auth=auth)
 r = json.loads(r.text)
