@@ -15,14 +15,16 @@ comment = 'https://api.twitter.com/1.1/statuses/update.json?in_reply_to_status_i
 queryfriends = 'https://api.twitter.com/1.1/friends/ids.json'
 
 #Authentication of the app
-auth = OAuth1('kYg4claOg0rjgyGJDhvvrrF14', 'jqgDkAKn3aAziYh4sUyAnXsuQTDQ9cOCJt07baLdDSBIsmrVaD',
-'918095472212004865-HeZzj5dC7tmuKjohfoZjEdIkBh65rAp', 'bAK4N9m5cuXtTy6Re3jEIyzytcRjCijIeBEZPTSHrqjh6')
+auth = OAuth1('DhWtn21TQIk57cVEwugeKjipk', '2LahJ8hvltvcn0HF3sjyhm3HoXK0S8VCjybj5trdriHBRLGMSZ',
+'918095472212004865-iPsYLZPfLPCiznoJY6nQeF8ANNx3aaI', 'oTpFcSzoMFikJOTgAdGopTM09LLjlMboh0tiKKzOTP1A5')
 
 
 r = requests.get(queryfriends, auth=auth)
 r = json.loads(r.text)
 
+
 friends = r['ids']
+print(len(friends))
 
 #filefollowedw = open("usrsfollowed.txt","a")
 fileretweetedw = open("tweetsRT.txt","a")
